@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const fetch = require('node-fetch'); // npm install node-fetch@2
 
+// Client oluştur
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -51,7 +52,7 @@ const commands = [
 ].map(c => c.toJSON());
 
 // Slash komutlarını kaydet
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 (async () => {
     try {
         console.log('Slash komutlar güncelleniyor...');
@@ -183,7 +184,7 @@ process.on('SIGINT', () => {
 });
 
 // Bot login
-client.login(process.env.TOKEN);
+client.login(process.env.DISCORD_TOKEN);
 
 // Süreyi milisaniyeye çevir
 function parseDuration(input) {
